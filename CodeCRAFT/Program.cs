@@ -14,19 +14,7 @@ namespace Server
 
         void OnConnected(object? sender, ClientAcceptedEventArgs args)
         {
-            args.connection.Start(OnRecv, OnSend, OnDisconnected);
-        }
-
-        void OnRecv(ArraySegment<byte> buffer)
-        {
-        }
-
-        void OnSend(int numOfBytess)
-        {
-        }
-
-        void OnDisconnected(EndPoint endPoint)
-        {
+            var clinet = new Client(args.connection);
         }
     }
 }

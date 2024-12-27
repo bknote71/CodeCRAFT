@@ -1,0 +1,14 @@
+syntax = "proto3";
+package tutorial;
+
+import "google/protobuf/timestamp.proto";
+
+option csharp_namespace = "Server";
+
+message CEnterBattle {
+	int32 playerId = 1;
+}
+
+message CLeaveBattle {
+	int32 playerId = 1;
+}
