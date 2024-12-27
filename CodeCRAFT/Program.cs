@@ -1,4 +1,5 @@
-﻿using System.Net.Sockets;
+﻿using System.Net;
+using System.Net.Sockets;
 using Network;
 
 namespace Server
@@ -20,14 +21,12 @@ namespace Server
         {
         }
 
-        void OnSend(object? sender, SocketAsyncEventArgs args)
+        void OnSend(int numOfBytess)
         {
         }
 
-        void OnDisconnected(object? sender, SocketAsyncEventArgs args)
+        void OnDisconnected(EndPoint endPoint)
         {
         }
     }
-
-    
 }
