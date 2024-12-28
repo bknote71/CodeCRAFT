@@ -5,10 +5,99 @@ import "google/protobuf/timestamp.proto";
 
 option csharp_namespace = "Server";
 
+enum MsgId {
+	UNKNOWN = 0;
+	SUPDATE = 1;
+    CENTERBATTLE = 2;
+    SEENTERBATTLE = 3;
+    CLEAVEBATTLE = 4;
+    SLEAVEBATTLE = 5;
+	SSPAWN = 6;
+	SDIE = 7;
+	CCHANGEROBOT = 8;
+	CSUBMIT = 9;
+	CCHAT = 10;
+	SCHAT = 11;
+}
+
+message SUpdate {
+    UpdateInfo update = 1; // List of updates in this message
+}
+
+message UpdateInfo {
+    int64 t = 1; // Timestamp
+    repeated RobotInfo robots = 2; // List of robots
+    repeated BulletInfo bullets = 3; // List of bullets
+    repeated ScanInfo scans = 4; // List of scans
+
+    message RobotInfo {
+        int32 id = 1; // Robot ID
+        string name = 2; // Robot name
+        string username = 3; // User's name controlling the robot
+        double x = 4; // X-coordinate
+        double y = 5; // Y-coordinate
+        double bodyHeading = 6; // Body heading angle
+        double gunHeading = 7; // Gun heading angle
+        double radarHeading = 8; // Radar heading angle
+        double hp = 9; // Health points
+        bool dead = 10; // Is the robot dead
+    }
+
+    message BulletInfo {
+        int32 id = 1; // Bullet ID
+        double x = 2; // X-coordinate
+        double y = 3; // Y-coordinate
+    }
+
+    message ScanInfo {
+        int32 id = 1; // Scan ID
+        string name = 2; // Scan name
+        double robotX = 3; // Robot's X-coordinate
+        double robotY = 4; // Robot's Y-coordinate
+        double angleStart = 5; // Starting angle of the scan
+        double angleExtent = 6; // Angle extent of the scan
+        double x = 7; // X-coordinate of the scan area
+        double y = 8; // Y-coordinate of the scan area
+        double width = 9; // Width of the scan area
+        double height = 10; // Height of the scan area
+    }
+}
+
 message CEnterBattle {
 	int32 playerId = 1;
 }
 
+message SEnterBattle {
+    int32 robotId = 1;
+    int32 specIndex = 2;
+    string robotName = 3;
+    string username = 4;
+}
+
 message CLeaveBattle {
 	int32 playerId = 1;
+}
+
+message SSpawn {
+
+}
+
+message SDie {
+
+}
+
+message CChangeRobot {
+
+}
+
+message CSubmit {
+
+}
+
+message CChat {
+
+}
+
+message SChat {
+
 }
